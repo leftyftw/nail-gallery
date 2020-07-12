@@ -71,6 +71,12 @@
       opacity: 0;
     }
 
+    .thumblist {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
     [v-cloak] {
       display: none;
     }
@@ -133,16 +139,13 @@
     <div v-if="!showCollection">
       <h1 class="siteTitle">ShortyWhatWhat Nail Collections</h1>
       <hr />
-      <div class="collectionItem" v-for="collection in collections" @click="navigateToCollection(collection)"
-        v-bind:style="{ 'background-image': 'url(' + collection.bgImage + ')' }">
-        <h4>{{collection.name}}</h4>
-        <p>{{collection.files.length}} images &amp; videos </p>
+      <div class="thumblist">
+        <div class="collectionItem" v-for="collection in collections" @click="navigateToCollection(collection)"
+          v-bind:style="{ 'background-image': 'url(' + collection.bgImage + ')' }">
+          <h4>{{collection.name}}</h4>
+          <p>{{collection.files.length}} images &amp; videos </p>
+        </div>
       </div>
-      <!-- <ul>
-                    <li v-for="collection in collections">
-                        <a :href="'?collection=' + collection.name">{{collection.name}}</a> - {{collection.files.length}} images &amp; videos
-                    </li>
-                </ul> -->
     </div>
     <div v-if="showCollection">
       <h1 class="siteTitle">{{name}}</h1>
@@ -150,7 +153,7 @@
         <a class="download" :href="'/nails/collections/pack/' + name" download>Download All</a>
       </div>
       <hr />
-      <transition-group name="thumbnailfade" tag="div">
+      <transition-group name="thumbnailfade" tag="div" class="thumblist">
         <span v-for="image in images" :key="image.id" :class="image.isVideo && 'video-thumbnail'">
           <img v-if="!image.isVideo" @click="showLightbox(image.name)" :src="image.name" :alt="image.alt"
             :title="image.alt" />
