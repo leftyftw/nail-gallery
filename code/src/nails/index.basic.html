@@ -1,0 +1,55 @@
+
+<html>
+    <head>
+        <title>ShortyWhatWhat Nail Collection</title>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+        <meta rel="stylesheet" href="https://unpkg.com/vue-my-photos/dist/lightbox.css">
+        <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+        <style>
+            [v-cloak] {
+                display: none;
+            }
+            ul.images {
+                list-style-type: none;
+            }
+            ul.images>li {
+                float: left;
+            }
+            .download {
+                position: fixed;
+                top: 0;
+                right: 0;
+                padding: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app" v-cloak>
+            <div v-if="!showCollection">
+                <h1 style="text-align: center;">ShortyWhatWhat Nail Collections</h1>
+                <hr />
+                <ul>
+                    <li v-for="collection in collections">
+                        <a :href="'?collection=' + collection.name">{{collection.name}}</a> - {{collection.files.length}} images &amp; videos
+                    </li>
+                </ul>
+            </div>
+            <div v-if="showCollection">
+                <h1 style="text-align: center;">{{name}}</h1>
+                <div class="download">
+                    <a :href="'/nails/collections/pack/' + name" download>Download All</a>
+                </div>
+                <hr />
+                <ul class="images">
+                    <li v-for="file in files">
+                        <video v-if="file.endsWith('mov')" width="240px" height="240px" controls :src="file"></video>
+                        <img v-if="!file.endsWith('mov')" width="240px" height="240px" :src="file"></img>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <script src="main.js"></script>
+    </body>
+</html>
