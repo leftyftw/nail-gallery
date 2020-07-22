@@ -2,6 +2,15 @@
 
 <head>
   <title>ShortyWhatWhat Nail Collection</title>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-15565272-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-15565272-1');
+  </script>
+
   <!-- -->
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> <!-- -->
   <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script> -->
@@ -155,7 +164,7 @@
       <hr />
       <transition-group name="thumbnailfade" tag="div" class="thumblist">
         <span v-for="image in images" :key="image.id" :class="image.isVideo && 'video-thumbnail'">
-          <img v-if="!image.isVideo" @click="showLightbox(image.name)" :src="image.name" :alt="image.alt"
+          <img v-if="!image.isVideo" @click="showLightbox(image.name)" :src="image.thumb" :alt="image.alt"
             :title="image.alt" />
           <video v-if="image.isVideo" @click="showVideoLightbox(image.name)" :src="image.name"></video>
         </span>

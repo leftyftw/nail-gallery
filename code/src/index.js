@@ -3,6 +3,7 @@ const fastify = require('fastify')({
   logger: true
 });
 const path = require('path');
+const imageThumbnail = require('image-thumbnail');
 const lister = require('./files/lister');
 const zipper = require('./files/zipper');
 
@@ -13,7 +14,14 @@ fastify.register(require('fastify-static'), {
 
 fastify.get('/', async (request, reply) => {
   return reply.redirect('/nails/');
-})
+});
+
+fastify.get('/nails/thumbnail/*', async (request, reply) => {
+  const options = { width: 240, height: 240 };
+  const fpath = path.join(__dirname, 'nails', decodeURI(request.url).substring('/nails/thumbnail'.length));
+  thumb = await imageThumbnail(fpath, options);
+  reply.send(thumb); 
+});
 
 // Declare a route
 fastify.get('/nails/collections', async (request, reply) => {

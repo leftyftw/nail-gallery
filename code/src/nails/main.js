@@ -10,6 +10,7 @@ fetch("/nails/collections").then(resp => resp.json()).then(body => {
     if (!data.collections.hasOwnProperty(x)) continue;
     const col = data.collections[x];
     col.bgImage = `"${col.files[0]}"`;
+    col.bgImage = col.bgImage.replace('/nails/', '/nails/thumbnail/');
   }
 
   if (site) {
@@ -60,9 +61,11 @@ fetch("/nails/collections").then(resp => resp.json()).then(body => {
           .map(x => {
             const isVideo = !x.name.toUpperCase().endsWith('JPG');
             const title = x.id.substr(0, x.id.lastIndexOf('.'));
+            const thumb = isVideo ? x.name : x.name.replace('/nails/', '/nails/thumbnail/'); 
             const alt = title;
             return {
               ...x,
+              thumb,
               isVideo,
               title,
               alt
