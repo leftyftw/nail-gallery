@@ -10,7 +10,7 @@ const lister = {
     getFiles: (dir) => {
         
         const globstar = dir ? `src/nails/${dir}/**/*.{JPG,jpg,MOV,mov,mp4,MP4}` : `src/nails/**/*.{JPG,jpg,MOV,mov,mp4,MP4}`;
-        return glob(globstar).then(x => x.map(y => y.substr(3)));
+        return glob(globstar).then(x => x.filter(y => !y.includes('@eaDir')).map(y => y.substr(3)));
     },
 
     siteInfo: () => {
