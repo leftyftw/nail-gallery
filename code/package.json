@@ -14,6 +14,7 @@
     "fastify-static": "^3.1.0",
     "glob": "^7.1.6",
     "glob-promise": "^3.4.0",
-    "image-thumbnail": "^1.0.10"
+    "image-thumbnail": "^1.0.10",
+    "axios": ">=0.21.1"
   }
 }
