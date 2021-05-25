@@ -59,7 +59,7 @@ fetch("/nails/collections").then(resp => resp.json()).then(body => {
             id: x.substr(x.lastIndexOf('/') + 1)
           }))
           .map(x => {
-            const isVideo = !x.name.toUpperCase().endsWith('JPG');
+            const isVideo = !(x.name.toUpperCase().endsWith('JPG') || x.name.toUpperCase().endsWith('PNG'));
             const title = x.id.substr(0, x.id.lastIndexOf('.'));
             const thumb = isVideo ? x.name : x.name.replace('/nails/', '/nails/thumbnail/'); 
             const alt = title;
