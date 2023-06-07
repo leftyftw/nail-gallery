@@ -10,7 +10,7 @@ const zipper = {
         
         const zipFilePath = path.join(dir, 'swatches.zip');
         if (!fs.existsSync(zipFilePath)) {
-            child_process.execSync(`rm -rf \\@eadir && zip -r swatches.zip *`, {
+            child_process.execSync(`rm -rf \\@eaDir && zip -r swatches.zip *`, {
                 cwd: dir
             });
         }
