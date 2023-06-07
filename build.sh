@@ -1,1 +1,1 @@
-docker build -t gallery .
+docker build -t leftyftw/nail-gallery .

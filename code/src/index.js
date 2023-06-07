@@ -7,9 +7,14 @@ const imageThumbnail = require('image-thumbnail');
 const lister = require('./files/lister');
 const zipper = require('./files/zipper');
 
-fastify.register(require('fastify-static'), {
+fastify.register(require('@fastify/static'), {
   root: path.join(__dirname, 'nails'),
-  prefix: '/nails/', // optional: default '/'
+  prefix: '/nails', // optional: default '/'
+  prefixAvoidTrailingSlash: true,
+  list: {
+    format: 'json',
+    names: ['index', 'index.json', '/']
+  }
 });
 
 fastify.get('/', async (request, reply) => {
@@ -38,13 +43,15 @@ fastify.get('/nails/collections/pack/:sitename', async (request, reply) => {
 
   const fileInfo = zipper.createZipFile(`nails/collections/${dir}`);
 
-  return reply.sendFile(fileInfo.fileName, fileInfo.path);
+  console.log(`DOWNLOAD: ${fileInfo.fileName}, {root: ${fileInfo.path}}`)
+
+  return reply.download(fileInfo.fileName, {root: fileInfo.path});
 });
 
 // Run the server!
 const start = async () => {
   try {
-    await fastify.listen(3000, '0.0.0.0')
+    await fastify.listen({port: 3000})
     fastify.log.info(`Server listening on ${fastify.server.address().port}`)
   } catch (err) {
     fastify.log.error(err)

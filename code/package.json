@@ -10,11 +10,11 @@
   "author": "Jaime Torres",
   "license": "ISC",
   "dependencies": {
-    "fastify": "^3.0.0",
-    "fastify-static": "^3.1.0",
+    "@fastify/static": "^6.10.2",
+    "axios": ">=0.21.1",
+    "fastify": "^4.17.0",
     "glob": "^7.1.6",
     "glob-promise": "^3.4.0",
-    "image-thumbnail": "^1.0.10",
-    "axios": ">=0.21.1"
+    "image-thumbnail": "^1.0.10"
   }
 }
