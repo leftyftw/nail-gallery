@@ -9,8 +9,8 @@ const basePath = process.cwd();
 const lister = {
     getFiles: (dir) => {
         
-        const globstar = dir ? `src/nails/${dir}/**/*.{JPG,jpg,PNG,png,MOV,mov,mp4,MP4}` : `src/nails/**/*.{PNG,png,JPG,jpg,MOV,mov,mp4,MP4}`;
-        return glob(globstar).then(x => x.filter(y => !y.includes('@eaDir')).map(y => y.substr(3)));
+        const globstar = dir ? `src/nails/${dir}/**/*.{JPG,jpg,JPEG,jpeg,PNG,png,MOV,mov,mp4,MP4}` : `src/nails/**/*.{PNG,png,JPG,jpg,JPEG,jpeg,MOV,mov,mp4,MP4}`;
+        return glob(globstar).then(x => x.filter(y => !y.includes('@eaDir')).map(y => y.substring(3)));
     },
 
     siteInfo: () => {
